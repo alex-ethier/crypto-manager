@@ -1,4 +1,4 @@
-package transaction
+package trade
 
 import (
 	golorem "github.com/drhodes/golorem"
@@ -17,7 +17,7 @@ type Service interface {
 }
 
 // Implement service with empty struct
-type TransactionService struct {
+type TradeService struct {
 
 }
 
@@ -26,14 +26,14 @@ type TransactionService struct {
 type ServiceMiddleware func(Service) Service
 
 // Implement service functions
-func (TransactionService) Word(min, max int) string {
+func (TradeService) Word(min, max int) string {
 	return golorem.Word(min, max)
 }
 
-func (TransactionService) Sentence(min, max int) string {
+func (TradeService) Sentence(min, max int) string {
 	return golorem.Sentence(min, max)
 }
 
-func (TransactionService) Paragraph(min, max int) string {
+func (TradeService) Paragraph(min, max int) string {
 	return golorem.Paragraph(min, max)
 }

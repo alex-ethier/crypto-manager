@@ -1,4 +1,4 @@
-package transaction
+package trade
 
 import (
 	"github.com/go-kit/kit/endpoint"
@@ -12,27 +12,27 @@ var (
 )
 
 //request
-type TransactionRequest struct {
+type TradeRequest struct {
 	RequestType string
 	Min int
 	Max int
 }
 
 //response
-type TransactionResponse struct {
+type TradeResponse struct {
 	Message string `json:"message"`
 	Err     error `json:"err,omitempty"`
 }
 
 // endpoints wrapper
 type Endpoints struct {
-	TransactionEndpoint endpoint.Endpoint
+	TradeEndpoint endpoint.Endpoint
 }
 
 // creating Lorem Ipsum Endpoint
-func MakeTransactionEndpoint(svc Service) endpoint.Endpoint {
+func MakeTradeEndpoint(svc Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
-		req := request.(TransactionRequest)
+		req := request.(TradeRequest)
 
 		var (
 			txt string
@@ -52,7 +52,7 @@ func MakeTransactionEndpoint(svc Service) endpoint.Endpoint {
 			return nil, ErrRequestTypeNotFound
 		}
 
-		return TransactionResponse{Message: txt}, nil
+		return TradeResponse{Message: txt}, nil
 	}
 
 }

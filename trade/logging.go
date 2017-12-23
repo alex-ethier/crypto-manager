@@ -1,4 +1,4 @@
-package transaction
+package trade
 
 import (
 	"github.com/go-kit/kit/log"

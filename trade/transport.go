@@ -1,4 +1,4 @@
-package transaction
+package trade
 
 import (
 	"net/http"
@@ -28,8 +28,8 @@ func MakeHttpHandler(ctx context.Context, endpoint Endpoints, logger log.Logger)
 
 	//POST /lorem/{type}/{min}/{max}
 	r.Methods("POST").Path("/lorem/{type}/{min}/{max}").Handler(httptransport.NewServer(
-		endpoint.TransactionEndpoint,
-		decodeTransactionRequest,
+		endpoint.TradeEndpoint,
+		decodeTradeRequest,
 		encodeResponse,
 		options...,
 	))
@@ -39,7 +39,7 @@ func MakeHttpHandler(ctx context.Context, endpoint Endpoints, logger log.Logger)
 }
 
 // decode url path variables into request
-func decodeTransactionRequest(_ context.Context, r *http.Request) (interface{}, error) {
+func decodeTradeRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	vars := mux.Vars(r)
 	requestType, ok := vars["type"]
 	if !ok {
@@ -58,7 +58,7 @@ func decodeTransactionRequest(_ context.Context, r *http.Request) (interface{}, 
 
 	min, _ := strconv.Atoi(vmin)
 	max, _ := strconv.Atoi(vmax)
-	return TransactionRequest{
+	return TradeRequest{
 		RequestType: requestType,
 		Min: min,
 		Max: max,

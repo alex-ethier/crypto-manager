@@ -10,7 +10,7 @@ import (
 	
 	"github.com/go-kit/kit/log"
 
-	"github.com/alex-ethier/crypto-manager/transaction"
+	"github.com/alex-ethier/crypto-manager/trade"
 )
 
 func main() {
@@ -26,14 +26,14 @@ func main() {
 		logger = log.With(logger, "caller", log.DefaultCaller)
 	}
 
-	var svc transaction.Service
-	svc = transaction.TransactionService{}
-	svc = transaction.LoggingMiddleware(logger)(svc)
-	endpoint := transaction.Endpoints{
-		TransactionEndpoint: transaction.MakeTransactionEndpoint(svc),
+	var svc trade.Service
+	svc = trade.TradeService{}
+	svc = trade.LoggingMiddleware(logger)(svc)
+	endpoint := trade.Endpoints{
+		TradeEndpoint: trade.MakeTradeEndpoint(svc),
 	}
 
-	r := transaction.MakeHttpHandler(ctx, endpoint, logger)
+	r := trade.MakeHttpHandler(ctx, endpoint, logger)
 
 	// HTTP transport
 	go func() {
