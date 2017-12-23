@@ -1,0 +1,4 @@
+package: github.com/alex-ethier/crypto-manager
+import:
+- package: github.com/go-kit/kit
+  version: v0.6.0
