@@ -2,3 +2,8 @@ package: github.com/alex-ethier/crypto-manager
 import:
 - package: github.com/go-kit/kit
   version: v0.6.0
+- package: github.com/go-logfmt/logfmt
+  version: v0.3.0
+- package: github.com/drhodes/golorem
+- package: github.com/gorilla/mux
+  version: v1.6.0
